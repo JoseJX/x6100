@@ -62,3 +62,21 @@ Note change sdz to your SD Card device
 sudo dd if=build/images/sdcard.img of=/dev/sdz bs=1M
 eject /dev/sdz
 ```
+
+## Starting the radio
+Sometimes it appears that the radio doesn't start properly. Perhaps the ST32 is running but the ARM is not? In any case, I was able to get things to boot properly by first booting the default firmware, then powering off, then booting from the SD Image. I did run into an issue where the DRAM was detected as 2GB causing the system to not boot. There is a patch in the TOADs discord about hardcoding to 1GB to fix this issue (Thanks DreamNik):
+```
+--- a/arch/arm/mach-sunxi/dram_sun8i_a33.c
+--- b/arch/arm/mach-sunxi/dram_sun8i_a33.c
+@@ -348,6 +348,10 @@
+         return 0;
+ 
+     auto_detect_dram_size(&para);
++    // Fix: force set DRAM size to 1024MiB, because auto-detection is unstable
++    para.rows      = 16;
++    para.page_size = 2048;
++    mctl_set_cr(&para);
+ 
+     /* Enable master software clk */
+     writel(readl(&mctl_com->swonr) | 0x3ffff, &mctl_com->swonr);
+```
