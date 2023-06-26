@@ -34,3 +34,16 @@ Connect USB-C to USB-A cable provided by Xiegu to the DEV port on the radio. Thi
 ## Kernel Boot Log
 ## Login
 Default login/password: root/123
+
+# Building R1CBU with buildroot
+## Clone the repository
+```
+git clone --recurse-submodules git@github.com:strijar/AetherX6100Buildroot.git
+git switch R1CBU
+git submodule update --init --recursive
+```
+## Build the project
+Note: My distro has bash as /bin/bash not /usr/bin/bash, you may need to modify this script
+```
+./br_build.sh
+```
