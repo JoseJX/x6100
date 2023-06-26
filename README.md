@@ -26,6 +26,10 @@ DRAM:  1 GiB
 ```
 
 # Default Firmware
+Connect USB-C to USB-A cable provided by Xiegu to the DEV port on the radio. This interface provides the following interfaces:
+* Serial - Serial Console
+* Serial
+* Audio
 ## Kernel Boot Log
 ## Login
 Default login/password: root/123
