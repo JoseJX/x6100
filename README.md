@@ -56,3 +56,9 @@ Note: My distro has bash as /bin/bash not /usr/bin/bash, you may need to modify 
 cd build
 make
 ```
+## Write the SD Card
+Note change sdz to your SD Card device
+```
+sudo dd if=build/images/sdcard.img of=/dev/sdz bs=1M
+eject /dev/sdz
+```
