@@ -24,3 +24,8 @@ CPU:   Allwinner A33 (SUN8I 1667)
 Model: XIEGU Tech X6100 HF+6m Transceiver                                       
 DRAM:  1 GiB
 ```
+
+# Default Firmware
+## Kernel Boot Log
+## Login
+Default login/password: root/123
