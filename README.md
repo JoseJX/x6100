@@ -26,6 +26,13 @@ Model: XIEGU Tech X6100 HF+6m Transceiver
 DRAM:  1 GiB
 ```
 
+# Default Partitions
+## SD CARD
+### uboot
+### RootFS
+### User FS (optional)
+## MMC
+
 # Default Firmware
 Connect USB-C to USB-A cable provided by Xiegu to the DEV port on the radio. This interface provides the following interfaces:
 * Serial - Serial Console
