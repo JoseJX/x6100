@@ -10,6 +10,7 @@ https://github.com/AetherRadio/X6100Control
 
 https://github.com/AetherRadio/X6100Study
 
+https://github.com/Links2004/x6100-armbian
 
 # uboot Header
 ```
