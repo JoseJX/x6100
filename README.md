@@ -46,4 +46,6 @@ git submodule update --init --recursive
 Note: My distro has bash as /bin/bash not /usr/bin/bash, you may need to modify this script
 ```
 ./br_config.sh
+cd build
+make
 ```
