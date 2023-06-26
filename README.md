@@ -80,3 +80,5 @@ Sometimes it appears that the radio doesn't start properly. Perhaps the ST32 is 
      /* Enable master software clk */
      writel(readl(&mctl_com->swonr) | 0x3ffff, &mctl_com->swonr);
 ```
+
+Note: The default build from the buildroot above is a starting point for a custom firmware. It does not include all of the applications to run the radio!
