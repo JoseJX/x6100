@@ -118,6 +118,7 @@ sudo kpartx -d sdcard_20221124.img
 
 ## Put the files into the userpatches directory
 ```
+mkdir -p userpatches/overlay/extracted/
 cp zImage userpatches/overlay/extracted/
 cp sun8i-r16-x6100.dtb userpatches/overlay/extracted
 cp -r modules userpatches/overlay/extracted
