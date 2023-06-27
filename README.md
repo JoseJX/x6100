@@ -82,3 +82,50 @@ Sometimes it appears that the radio doesn't start properly. Perhaps the ST32 is 
 ```
 
 Note: The default build from the buildroot above is a starting point for a custom firmware. It does not include all of the applications to run the radio!
+
+
+# Building Arbmian for the x6100
+
+## Check out the Armbian build environment
+```
+git clone https://github.com/Links2004/x6100-armbian
+cd x6100-armbian
+git clone https://github.com/armbian/build --depth=1
+```
+
+## Collect uboot
+Download the Xiegu firmware: https://radioddity.s3.amazonaws.com/Xiegu_X6100_Firmware_Upgrade_20221124.zip, unzip it and cut uboot from the image:
+
+```
+unzip Xiegu_X6100_Firmware_Upgrade_20221124.zip
+dd if=Firmware/sdcard_20221124.img of=uboot_sdcard.bin bs=1024 skip=8 count=512 seek=0
+```
+
+## Collect the kernel, device tree and modules
+The kpartx tool makes mounting images easy by creating loop based devices. You can also manually set up the loop devices if you don't have kpartx installed.
+```
+sudo kpartx -av sdcard_20221124.img
+sudo mkdir /mnt/x6100
+sudo mount /dev/mapper/loop0p1 /mnt/x6100
+cp /mnt/x6100/zImage .
+cp /mnt/x6100/sun8i-r16-x6100.dtb .
+sudo umount /dev/mapper/loop0p1
+sudo mount /dev/mapper/loop0p2 /mnt/x6100
+cp -r /mnt/x6100/lib/modules .
+sudo umount /dev/mapper/loop0p2
+sudo kpartx -d sdcard_20221124.img
+```
+
+## Put the files into the userpatches directory
+```
+cp zImage userpatches/overlay/extracted/
+cp sun8i-r16-x6100.dtb userpatches/overlay/extracted
+cp -r modules userpatches/overlay/extracted
+```
+
+## Add userpatches to the armbian build
+```
+cp -r userpatches/ build/
+cd build
+./compile.sh docker BOARD=lime-a33 BSPFREEZE=yes BRANCH=current RELEASE=sid BUILD_MINIMAL=no BUILD_DESKTOP=yes KERNEL_ONLY=no KERNEL_CONFIGURE=no DESKTOP_ENVIRONMENT=xfce DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base DESKTOP_APPGROUPS_SELECTED="3dsupport browsers" COMPRESS_OUTPUTIMAGE=sha,gpg,img
+```
