@@ -138,6 +138,7 @@ sudo dd if=build/output/images/Armbian_23.08.0-trunk_Lime-a33_sid_current_6.1.34
 ```
 
 ## Copy the bootloader
+### Why do we need to copy the bootloader
 It appears that the Armbian uboot doesn't work, which is why we backed up the bootloader before:
 ```
 U-Boot SPL 2022.10-armbian (Jun 20 2023 - 20:12:41 +0000)
@@ -149,9 +150,9 @@ SPL: failed to boot from all boot devices
 ### ERROR ### Please RESET the board ###
 ```
 
-To copy over the old bootloader:
-
+### To copy over the old bootloader
 Note: Replace sdz with your USB device
 ```
-sudo dd if=uboot_sdcard.bin of=/dev/sdz
+sudo dd if=uboot_sdcard.bin of=/dev/sdz bs=1024 seek=8
+
 ```
