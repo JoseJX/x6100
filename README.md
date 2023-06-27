@@ -124,9 +124,33 @@ cp sun8i-r16-x6100.dtb userpatches/overlay/extracted
 cp -r modules userpatches/overlay/extracted
 ```
 
-## Add userpatches to the armbian build
+## Add userpatches and build
 ```
 cp -r userpatches/ build/
 cd build
 ./compile.sh BOARD=lime-a33 BSPFREEZE=yes BRANCH=current RELEASE=sid BUILD_MINIMAL=no KERNEL_CONFIGURE=no DESKTOP_ENVIRONMENT=xfce DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base DESKTOP_APPGROUPS_SELECTED="3dsupport browsers" COMPRESS_OUTPUTIMAGE=sha,gpg,img
+```
+
+## Flash to SD
+Note: Replace sdz with your USB device
+```
+sudo dd if=build/output/images/Armbian_23.08.0-trunk_Lime-a33_sid_current_6.1.34_xfce.img /dev/sdz
+```
+
+## Copy the bootloader
+It appears that the Armbian uboot doesn't work, which is why we backed up the bootloader before:
+```
+U-Boot SPL 2022.10-armbian (Jun 20 2023 - 20:12:41 +0000)
+DRAM: 1024 MiB
+Trying to boot from MMC1
+MMC: no card present
+spl: mmc init failed with error: -123
+SPL: failed to boot from all boot devices
+### ERROR ### Please RESET the board ###
+```
+
+To copy over the old bootloader:
+Note: Replace sdz with your USB device
+```
+sudo dd if=uboot_sdcard.bin of=/dev/sdz
 ```
