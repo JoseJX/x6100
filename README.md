@@ -128,5 +128,5 @@ cp -r modules userpatches/overlay/extracted
 ```
 cp -r userpatches/ build/
 cd build
-./compile.sh BOARD=lime-a33 BSPFREEZE=yes BRANCH=current kernel RELEASE=sid BUILD_MINIMAL=no KERNEL_CONFIGURE=no DESKTOP_ENVIRONMENT=xfce DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base DESKTOP_APPGROUPS_SELECTED="3dsupport browsers" COMPRESS_OUTPUTIMAGE=sha,gpg,img
+./compile.sh BOARD=lime-a33 BSPFREEZE=yes BRANCH=current RELEASE=sid BUILD_MINIMAL=no KERNEL_CONFIGURE=no DESKTOP_ENVIRONMENT=xfce DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base DESKTOP_APPGROUPS_SELECTED="3dsupport browsers" COMPRESS_OUTPUTIMAGE=sha,gpg,img
 ```
