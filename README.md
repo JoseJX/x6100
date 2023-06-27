@@ -150,6 +150,7 @@ SPL: failed to boot from all boot devices
 ```
 
 To copy over the old bootloader:
+
 Note: Replace sdz with your USB device
 ```
 sudo dd if=uboot_sdcard.bin of=/dev/sdz
